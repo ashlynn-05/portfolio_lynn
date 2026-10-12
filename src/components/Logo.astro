@@ -1,0 +1,36 @@
+---
+// A company logo from src/data/content.ts.
+//   variant "tile": the mark in a small white tile (job rows).
+//   variant "inline": the mark at text size (org chips, list rows).
+//   variant "full": the wide logo, or mark + name when a company only has a mark (logo strip).
+// Decorative by default (alt=""), because the company name is always written next to it;
+// pass labelled when the logo stands alone.
+import { logos, type LogoId } from "../data/content";
+import { to } from "../lib/url";
+
+interface Props {
+  id: LogoId;
+  variant?: "tile" | "inline" | "full";
+  labelled?: boolean;
+  class?: string;
+}
+const { id, variant = "inline", labelled = false, class: cls = "" } = Astro.props;
+const l = logos[id];
+const p = Astro.url.pathname;
+const alt = labelled ? `${l.name} logo` : "";
+const useFull = variant === "full" && l.full;
+---
+{useFull ? (
+  <span class={`co-logo co-logo--full ${cls}`}>
+    <img src={to(p, l.full!)} width={l.fullW} height={l.fullH} alt={alt} loading="lazy" decoding="async" />
+  </span>
+) : variant === "full" ? (
+  <span class={`co-logo co-logo--full co-logo--lockup ${cls}`}>
+    <img class={l.round ? "is-round" : ""} src={to(p, l.mark)} width={l.markW} height={l.markH} alt="" loading="lazy" decoding="async" />
+    <span style={l.ink ? `color: ${l.ink}` : undefined}>{labelled ? l.name : <span aria-hidden="true">{l.name}</span>}</span>
+  </span>
+) : (
+  <span class={`co-logo co-logo--${variant} ${l.round ? "co-logo--round" : ""} ${cls}`}>
+    <img src={to(p, l.mark)} width={l.markW} height={l.markH} alt={alt} loading="lazy" decoding="async" />
+  </span>
+)}

@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+import { to } from "../lib/url";
+
+export type NavKey = "home" | "works" | "story" | "none";
+interface Props { current: NavKey }
+const { current } = Astro.props;
+const p = Astro.url.pathname;
+
+const LINKS = [
+  { key: "works", label: "works", href: to(p, "works.html") },
+  { key: "home", label: "experience", href: to(p, "index.html#experience") },
+  { key: "story", label: "life story", href: to(p, "life-story.html") },
+] as const;
+---
+
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="logo" href={to(p, "index.html")} aria-label="Lynn Le, home" data-astro-prefetch>
+      <span class="logo__mark" aria-hidden="true">✦</span>
+      <span class="logo__name">lynn le<small>business analytics</small></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      {LINKS.map((l) => (
+        <a class="pill-link" href={l.href} aria-current={current === l.key && l.key !== "home" ? "page" : undefined} data-astro-prefetch>{l.label}</a>
+      ))}
+    </nav>
+    <div class="nav__end">
+      <button class="search-btn" type="button" data-cmdk aria-label="Jump anywhere (Command K)"><Icon name="magnifying-glass" /><span>jump</span><kbd>⌘K</kbd></button>
+      <a class="btn btn--primary btn--sm magnetic" href="#hi">say hi</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+    <span class="nav__prog" aria-hidden="true"></span>
+  </div>
+</header>
+<span id="nav-sentinel" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:40px"></span>

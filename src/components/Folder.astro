@@ -1,0 +1,24 @@
+---
+import FolderIcon from "./FolderIcon.astro";
+import type { Fill, LogoId } from "../data/content";
+
+interface Props {
+  fill: Fill;
+  icon: string;
+  logo?: LogoId;
+  label: string;
+  meta?: string;
+  href?: string;
+  class?: string;
+  style?: string;
+  current?: boolean;
+  [key: string]: unknown;
+}
+const { fill, icon, logo, label, meta, href, class: cls = "", style, current, ...rest } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+<Tag class={`folder f-${fill} ${current ? "is-current" : ""} ${cls}`} href={href} style={style} aria-current={current ? "page" : undefined} {...rest}>
+  <FolderIcon icon={icon} logo={logo} />
+  <span class="folder__label">{label}</span>
+  {meta && <span class="folder__meta">{meta}</span>}
+</Tag>

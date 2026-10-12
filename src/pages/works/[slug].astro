@@ -1,0 +1,86 @@
+---
+// Case study, in the layout from the design canvas: a rail of folders on the left,
+// one window on the right with the metric band, then problem / what I did / impact.
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import Folder from "../../components/Folder.astro";
+import Sticker from "../../components/Sticker.astro";
+import Metric from "../../components/Metric.astro";
+import Logo from "../../components/Logo.astro";
+import { projects, type Project } from "../../data/content";
+import { to } from "../../lib/url";
+
+export function getStaticPaths() {
+  return projects.map((w) => ({ params: { slug: w.slug }, props: { w } }));
+}
+
+const { w } = Astro.props as { w: Project };
+const p = Astro.url.pathname;
+const idx = projects.findIndex((x) => x.slug === w.slug);
+const next = projects[(idx + 1) % projects.length];
+---
+
+<Layout title={`Lynn Le, ${w.label}`} description={w.problem.startsWith("[") ? `${w.org}: ${w.role}.` : w.problem} ogType="article">
+  <Nav slot="nav" current="works" />
+
+  <div class="wrap cs">
+    <nav class="board cs-rail" aria-label="Work folders" data-cs-rail>
+      {projects.map((o) => (
+        <Folder fill={o.fill} icon={o.icon} logo={o.logo} label={o.label} href={to(p, `works/${o.slug}.html`)} current={o.slug === w.slug} />
+      ))}
+    </nav>
+
+    <article class="window cs-win" data-cs-win>
+      <div class="window__bar">
+        <div class="window__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <span class="window__path">~/lynn/works/{w.slug}</span>
+        <span class="window__meta">{w.dates}</span>
+        <a class="window__close" href={to(p, "works.html")} aria-label="Close and go back to the work folder"><Icon name="x" /></a>
+      </div>
+      <div class="window__body cs-body">
+        <div class="cs-meta" data-intro>
+          <span class="badge">{w.role}</span>
+          <span class="chip chip--outline chip--org">{w.logo && <Logo id={w.logo} />}{w.org}</span>
+          {w.chips.map((c) => <span class="chip chip--outline">{c}</span>)}
+        </div>
+        <h1 class="h-md cs-title" data-intro>{w.titleA} <span class="em">{w.titleEm}</span></h1>
+
+        <div class="band" data-intro>
+          {w.metrics.map((m) => (
+            <div><Metric value={m.value} prefix={m.prefix} suffix={m.suffix} text={m.text} /><p>{m.caption}</p></div>
+          ))}
+        </div>
+
+        <div class="trio">
+          <section data-rise>
+            <h2 class="trio__h"><Icon name="magnifying-glass" />problem</h2>
+            <p class="p">{w.problem}</p>
+          </section>
+          <section class="card did" data-rise>
+            <h2 class="trio__h"><Icon name="check-circle" />what I did</h2>
+            <ul class="ticks">{w.did.map((d) => <li><Icon name="check-circle" />{typeof d === "string" ? <span>{d}</span> : <span>{d.text}. <a class="tick-link" href={d.href} target="_blank" rel="noopener noreferrer">{d.link}<Icon name="arrow-up-right" /></a></span>}</li>)}</ul>
+          </section>
+          <Sticker as="section" fill={w.impactOpen ? "open" : "jasmine"} icon="lightning" status={w.impactOpen ? "to fill in" : "impact"} title={w.impactTitle} note={w.impactNote} class="impact" data-rise />
+        </div>
+
+        <div class="tools" data-rise>
+          <span class="tools__label">skills used</span>
+          {w.skills.map((s) => <span class="chip chip--outline">{s}</span>)}
+        </div>
+
+        <div class="cs-foot">
+          <a class="btn btn--secondary" href={to(p, "works.html")}><Icon name="arrow-left" />back to the desktop</a>
+          <a class="btn btn--secondary" href={to(p, `works/${next.slug}.html`)}>next folder: {next.label}<Icon name="arrow-right" /></a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <Footer slot="footer" title="Liked this folder? There's a person behind it." />
+</Layout>
+
+<script>
+  import "../../scripts/case";
+</script>

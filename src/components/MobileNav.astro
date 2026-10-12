@@ -1,0 +1,32 @@
+---
+import { to } from "../lib/url";
+import { contact } from "../data/content";
+
+const p = Astro.url.pathname;
+const ITEMS = [
+  { label: "home", sub: "the desktop", href: to(p, "index.html") },
+  { label: "works", sub: "six folders, real numbers", href: to(p, "works.html") },
+  { label: "experience", sub: "where I've clocked in", href: to(p, "index.html#experience") },
+  { label: "life story", sub: "the long version, with sidequests", href: to(p, "life-story.html") },
+];
+---
+
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu">
+  <ul>
+    {ITEMS.map((it, i) => (
+      <li>
+        <a class="mnav__item" href={it.href} style={`--i:${i}`}>
+          <span class="mnav__spark" aria-hidden="true">✦</span>
+          <span>
+            <span class="mnav__mask"><span class="mnav__t">{it.label}</span></span>
+            <span class="mnav__s">{it.sub}</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <div class="mnav__foot">
+    <a class="btn btn--onberry" href="#hi">say hi</a>
+    <p class="copyline"><span>{contact.email}</span></p>
+  </div>
+</div>

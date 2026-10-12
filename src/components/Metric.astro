@@ -1,0 +1,14 @@
+---
+// A CV number. Renders its final value (so it reads with JS off) and counts up when shown.
+interface Props {
+  value: number | null;
+  prefix?: string;
+  suffix?: string;
+  text?: string;
+  class?: string;
+}
+const { value, prefix = "", suffix = "", text, class: cls = "metric" } = Astro.props;
+---
+{value === null
+  ? <span class={cls}>{text}</span>
+  : <span class={cls} data-count={value} data-prefix={prefix} data-suffix={suffix}>{prefix}{value}{suffix}</span>}

@@ -1,0 +1,26 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  path: string;
+  meta?: string;
+  closeHref?: string;
+  closeLabel?: string;
+  class?: string;
+  bodyClass?: string;
+  style?: string;
+  [key: string]: unknown;
+}
+const { path, meta, closeHref, closeLabel = "Close", class: cls = "", bodyClass = "", style, ...rest } = Astro.props;
+---
+<section class={`window ${cls}`} style={style} {...rest}>
+  <div class="window__bar">
+    <div class="window__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    <span class="window__path">{path}</span>
+    {meta && <span class="window__meta">{meta}</span>}
+    {closeHref && <a class="window__close" href={closeHref} aria-label={closeLabel}><Icon name="x" /></a>}
+  </div>
+  <div class={`window__body ${bodyClass}`}>
+    <slot />
+  </div>
+</section>

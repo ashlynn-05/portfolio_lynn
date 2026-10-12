@@ -1,0 +1,22 @@
+---
+// The folder drawing on its own: back panel with a tab, a paper, and a front pocket
+// that tips open on hover and on hold. Scale it with --fs (10px = 96px wide).
+import Icon from "./Icon.astro";
+import { logos, type Fill, type LogoId } from "../data/content";
+import { to } from "../lib/url";
+
+interface Props {
+  icon: string;
+  /** Company logo stuck on the pocket like a label, in place of the glyph. */
+  logo?: LogoId;
+  fill?: Fill;
+  class?: string;
+}
+const { icon, logo, fill, class: cls = "" } = Astro.props;
+const l = logo ? logos[logo] : undefined;
+---
+<span class={`fold ${fill ? `f-${fill}` : ""} ${cls}`} aria-hidden="true">
+  <span class="fold__back"></span>
+  <span class="fold__paper"></span>
+  <span class="fold__front">{l ? <span class={`fold__logo${l.round ? " is-round" : ""}`}><img src={to(Astro.url.pathname, l.mark)} width={l.markW} height={l.markH} alt="" loading="lazy" decoding="async" draggable="false" /></span> : <Icon name={icon} weight="bold" />}</span>
+</span>

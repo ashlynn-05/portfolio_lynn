@@ -1,0 +1,100 @@
+---
+// Shared shell, following the quin frontend's Layout: head, SEO + OG, JSON-LD,
+// fonts, then the React islands (command palette, media lightbox).
+import "@fontsource-variable/bricolage-grotesque/index.css";
+import "@fontsource-variable/space-grotesk/index.css";
+import "../styles/global.css";
+
+import JsonLd from "../components/JsonLd.astro";
+import MobileNav from "../components/MobileNav.astro";
+import CommandPalette, { type PaletteItem } from "../components/CommandPalette.tsx";
+import MediaLightbox from "../components/MediaLightbox.tsx";
+import { contact, projects } from "../data/content";
+import { to } from "../lib/url";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  ogType?: "website" | "article";
+}
+
+const {
+  title = "Lynn Le, Business Analytics",
+  description = "Lynn Le is a Business Analytics student at Deakin who turns market research and prospect data into pipelines, reports and booked meetings.",
+  image = "/og/home.png",
+  ogType = "website",
+} = Astro.props;
+
+const p = Astro.url.pathname;
+const canonicalURL = new URL(p, Astro.site ?? Astro.url);
+
+const paletteItems: PaletteItem[] = [
+  { kind: "page", label: "Home", hint: "the desktop", url: to(p, "index.html") },
+  { kind: "page", label: "Works", hint: "all six folders", url: to(p, "works.html") },
+  { kind: "page", label: "Life story", hint: "chapters and sidequests", url: to(p, "life-story.html") },
+  ...projects.map((w) => ({ kind: "work" as const, label: `${w.titleA} ${w.titleEm}`, hint: w.org, url: to(p, `works/${w.slug}.html`) })),
+  { kind: "action", label: "Copy Lynn's email", hint: contact.email, url: "", action: "copy-email" },
+  { kind: "action", label: "View resume", hint: "PDF", url: "", action: "resume" },
+];
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: contact.name,
+  jobTitle: "Business Development Representative Intern",
+  worksFor: { "@type": "Organization", name: "Sidekick" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Deakin University" },
+  address: { "@type": "PostalAddress", addressLocality: "Melbourne", addressRegion: "VIC", addressCountry: "AU" },
+  email: `mailto:${contact.email}`,
+  sameAs: [contact.linkedin],
+  url: Astro.site?.toString(),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href={to(p, "favicon.svg")} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FFE3EF" />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <JsonLd schema={person} />
+
+    <script is:inline>
+      // Before paint: mark JS on. Clear the old sticker-skin choice from earlier visits.
+      document.documentElement.classList.add("js");
+      try { localStorage.removeItem("ll-skin"); } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot name="nav" />
+    <MobileNav />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <div class="sparks" aria-hidden="true"></div>
+    <CommandPalette client:idle items={paletteItems} email={contact.email} />
+    <MediaLightbox client:idle />
+    <script>
+      import "../scripts/site";
+      import "../scripts/folders";
+    </script>
+  </body>
+</html>
