@@ -1,68 +1,183 @@
+<div align="center">
+
+<img src="public/favicon.svg" alt="Lynn Le logo" width="72" height="72">
+
 # Lynn Le Portfolio
 
-Lynn Le's portfolio: a soft pink desktop of folders, windows and stickers for a Business Analytics student who likes sidequests. Every number on the site comes from her CV (`public/bdr_lynnn.pdf`).
+**A soft pink desktop of folders, windows and stickers for a Business Analytics student who likes sidequests.**
 
-Built on the same stack as the quin frontend (Astro 5, Tailwind v4, React islands, Vercel), with the Payload CMS layer removed: content is static and typed in `src/data/content.ts`.
+[![Astro](https://img.shields.io/badge/Astro-5-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![GSAP](https://img.shields.io/badge/GSAP-3.15-88CE02?logo=greensock&logoColor=black)](https://gsap.com)
+[![Deploy with Vercel](https://img.shields.io/badge/deploy-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https://github.com/ashlynn-05/portfolio_lynn)
+
+[Overview](#overview) · [Getting started](#getting-started) · [Project structure](#project-structure) · [Editing content](#editing-content) · [Deploy](#deploy)
+
+<img src="public/og/home.png" alt="Lynn Le portfolio home page" width="720">
+
+</div>
+
+## Overview
+
+This is the personal portfolio of **Lynn Le**, a final-year Business Analytics student at Deakin University working across business development, partnerships and analytics. The site uses a desktop metaphor: work lives in draggable folders, case studies open as windows, and the life story is a pinned timeline with a sticker board.
+
+The cute is the wrapper. The numbers inside are real: every metric on the site comes from the CV in [`public/bdr_lynnn.pdf`](public/bdr_lynnn.pdf), and a test suite guards that promise.
+
+**Highlights**
+
+- Six case studies (Sidekick, Codrops, Elite TALKS, Kim Beauty, The Muse Crochet, hackathons), each with a pinned scroll story
+- Draggable desk of folders with a list view fallback
+- Cmd+K command palette and a media lightbox, both as React islands
+- Data-attribute driven motion with GSAP, fully disabled under `prefers-reduced-motion`
+- Static output with relative links, so the build runs on any host, in a sub-folder, or opened as plain files
+- SEO ready: canonical URLs, Open Graph image, JSON-LD and a sitemap
 
 ## Tech stack
 
-- **Framework:** Astro 5, static output (`build.format: "file"`, every internal link relative)
-- **Styling:** Tailwind CSS v4 via `@tailwindcss/vite`; tokens in the `@theme` block of `src/styles/global.css`, components as plain CSS below it
-- **Motion:** GSAP 3.15 (ScrollTrigger, SplitText, Draggable, InertiaPlugin, Flip), all free plugins
-- **Islands:** React 19 for the command palette (Cmd+K) and the media lightbox (`yet-another-react-lightbox`), both ported from quin
-- **Icons:** Phosphor (`@phosphor-icons/core`), inlined at build time by `src/components/Icon.astro`
-- **Fonts:** Bricolage Grotesque + Space Grotesk, self-hosted through Fontsource
-- **Hosting:** Vercel (the adapter switches on automatically when `VERCEL` is set) or any static host
+| Layer | Choice |
+|-------|--------|
+| Framework | [Astro 5](https://astro.build), static output (`build.format: "file"`) |
+| Styling | Tailwind CSS v4 via `@tailwindcss/vite`, tokens in the `@theme` block of `src/styles/global.css` |
+| Motion | GSAP 3.15 (ScrollTrigger, SplitText, Draggable, InertiaPlugin, Flip) |
+| Islands | React 19 for the command palette and `yet-another-react-lightbox` |
+| Icons | Phosphor (`@phosphor-icons/core`), inlined at build time |
+| Fonts | Bricolage Grotesque and Space Grotesk, self-hosted via Fontsource |
+| Tests | Vitest content guard rails |
+| Hosting | Vercel, or any static host |
 
-## Routes
+## Getting started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org) 20 or later
+- [Bun](https://bun.sh) (recommended, `bun.lock` is committed). `npm` works too.
+
+### Run it locally
+
+```bash
+git clone https://github.com/ashlynn-05/portfolio_lynn.git
+cd portfolio_lynn
+bun install
+bun dev
+```
+
+Then open http://localhost:4321.
+
+### Commands
+
+| Command | What it does |
+|---------|--------------|
+| `bun dev` | Start the dev server at `localhost:4321` |
+| `bun run build` | Build the static site to `./dist`, then make every path relative |
+| `bun run preview` | Preview the production build |
+| `bun run check` | Type-check `.astro` files |
+| `bun run test` | Run the content guard rails |
+
+## Project structure
+
+```text
+├── public/              # CV PDF, favicon, OG image, photos and company logos
+├── scripts/
+│   └── relativize.mjs   # post-build: rewrites root-absolute paths to relative ones
+├── src/
+│   ├── components/      # Folder, Window, Sticker, Nav, CommandPalette, MediaLightbox...
+│   ├── data/
+│   │   ├── content.ts   # all site content, typed and static
+│   │   └── content.test.ts
+│   ├── layouts/         # Layout.astro: SEO, OG, JSON-LD, fonts, islands
+│   ├── lib/             # url helper (relative links), lightbox and media helpers
+│   ├── pages/           # routes, see below
+│   ├── scripts/         # site-wide and per-page motion
+│   └── styles/          # global.css: design tokens and component styles
+├── DESIGN.md            # the design system spec
+└── astro.config.mjs
+```
+
+### Routes
 
 | Path | What it is |
-|------|-----------|
+|------|------------|
 | `/` | Home: hero, CV numbers, manifesto, work folders, experience, skill beams, life story teaser, contact |
 | `/works` | The work folder: draggable desk plus a list view |
 | `/works/[slug]` | Case study with a pinned scroll story (`sidekick`, `codrops`, `elite-talks`, `kim-beauty`, `muse-crochet`, `hackathons`) |
-| `/life-story` | Pinned timeline of chapters, character sheet, sticker board (drag, then "tidy up") |
+| `/life-story` | Pinned timeline of chapters, character sheet and sticker board |
 | `/404` | Not on the desk |
-
-## Commands
-
-Package manager: **bun** (`bun.lock` committed). `npm` works too.
-
-```bash
-bun install        # install deps
-bun dev            # dev server at http://localhost:4321
-bun run build      # static build to ./dist (paths made relative afterwards)
-bun run preview    # preview the build
-bun run check      # type-check .astro files
-bun run test       # content guard rails (vitest)
-```
-
-Set `SITE_URL` (or deploy on Vercel) so canonical URLs, OG tags and the sitemap use the real domain.
-
-## Motion, by data attribute
-
-Pages opt in with attributes; `src/scripts/site.ts` does the rest.
-
-| Attribute | Effect |
-|-----------|--------|
-| `data-intro` | fades up once on load |
-| `data-rise` | fades up when scrolled into view |
-| `data-row` | slides in from the left |
-| `data-count="50" data-suffix="+"` | counts up to the CV number |
-| `data-parallax="0.3"` | drifts against the scroll |
-| `data-split-lines` | reveals line by line from under a mask |
-| `data-scrub-words` | lights up word by word as you scroll |
-| `data-pin` | pinned story: `.step` items swap the `.frame` in the sticky `.stage` |
-| `data-drag` | draggable desktop object (wide screens) |
-
-The HTML is always the final state, so the site reads fine with JS off, and `prefers-reduced-motion` turns every animation off.
 
 ## Editing content
 
-Everything lives in `src/data/content.ts`: contact details, the six case studies, jobs, skills, life story chapters and stickers. Bracketed text like `[what you built]` is a placeholder for Lynn to fill in. Run `bun run test` after edits: it checks slugs, links, captions, and that no em or en dashes slipped in.
+Everything the site says lives in [`src/data/content.ts`](src/data/content.ts): contact details, case studies, jobs, skills, life story chapters and stickers. Bracketed text such as `[what you built]` is a placeholder to fill in.
 
-Still to add: a photo of Lynn (replace the `[photo of Lynn, 4:5]` slot in `src/pages/index.astro`) and what was built at each hackathon.
+After any edit, run the guard rails:
 
-## Design system
+```bash
+bun run test
+```
 
-`DESIGN.md` is the canonical spec (tokens, type, components, motion, copy rules). Read it before changing the look.
+They check that slugs are unique, every metric has a caption, every job links to a real case study, skill beams point at existing projects, the CV grade is right, and no em or en dashes slipped into the copy.
+
+> [!IMPORTANT]
+> Every number on the site must trace back to the CV. If a figure is not in `public/bdr_lynnn.pdf`, it does not go on the site.
+
+Internal links should be built with the `to()` helper from `src/lib/url.ts` so they stay relative:
+
+```astro
+<a href={to(Astro.url.pathname, "works/codrops.html")}>open the work folder</a>
+```
+
+### Motion by data attribute
+
+Pages opt in to motion with attributes, and `src/scripts/site.ts` does the rest.
+
+| Attribute | Effect |
+|-----------|--------|
+| `data-intro` | Fades up once on load |
+| `data-rise` | Fades up when scrolled into view |
+| `data-row` | Slides in from the left |
+| `data-count="50" data-suffix="+"` | Counts up to the CV number |
+| `data-parallax="0.3"` | Drifts against the scroll |
+| `data-split-lines` | Reveals line by line from under a mask |
+| `data-scrub-words` | Lights up word by word as you scroll |
+| `data-pin` | Pinned story: `.step` items swap the `.frame` in the sticky `.stage` |
+| `data-drag` | Draggable desktop object (wide screens) |
+
+The HTML is always the final state, so the site reads fine with JavaScript off.
+
+### Design system
+
+[`DESIGN.md`](DESIGN.md) is the canonical spec for tokens, type, components, motion and copy rules. In short: one berry accent (`#D5306D`), Bricolage Grotesque 800 over Space Grotesk, Phosphor icons plus the ✦ glyph, lowercase UI labels, no emoji, no dashes, no dark mode.
+
+> [!TIP]
+> Read `DESIGN.md` before changing anything visual. It also lists the patterns to avoid so the site never reads as templated.
+
+## Deploy
+
+### Vercel
+
+1. Import [`ashlynn-05/portfolio_lynn`](https://github.com/ashlynn-05/portfolio_lynn) at [vercel.com/new](https://vercel.com/new).
+2. Keep the detected **Astro** preset. The defaults work as they are:
+   - Install command: `bun install`
+   - Build command: `bun run build`
+   - Output directory: `dist`
+3. Deploy. `vercel.json` turns on clean URLs, so `/works/codrops.html` is served as `/works/codrops`.
+
+Canonical URLs, Open Graph tags and the sitemap use `VERCEL_PROJECT_PRODUCTION_URL` automatically. Once you have a custom domain, set it explicitly:
+
+```bash
+SITE_URL=https://your-domain.com
+```
+
+> [!NOTE]
+> The site is fully static and does not use the Vercel adapter. The adapter would switch to directory-style output (`works/codrops/index.html`) and break the relative `.html` links.
+
+### Any static host
+
+```bash
+bun run build
+```
+
+Upload the contents of `dist/` to Netlify, GitHub Pages, Cloudflare Pages or any web server. Because every path is relative, it also works from a sub-folder.
+
+## Contact
+
+**Lynn Le** · [tlinhle05@gmail.com](mailto:tlinhle05@gmail.com) · [LinkedIn](https://www.linkedin.com/in/lynn-le-9940b4307/)
