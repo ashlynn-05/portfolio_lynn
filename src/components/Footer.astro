@@ -1,0 +1,39 @@
+---
+import Icon from "./Icon.astro";
+import Folder from "./Folder.astro";
+import { contact } from "../data/content";
+import { to } from "../lib/url";
+
+interface Props { title?: string }
+const { title = "Got a role with people and spreadsheets in it?" } = Astro.props;
+const p = Astro.url.pathname;
+---
+
+<section id="hi" class="wrap sec" aria-labelledby="hi-h">
+  <div class="cta" data-cta>
+    <div class="cta__grid">
+      <div>
+        <h2 id="hi-h" class="cta__title" data-split-lines>{title}</h2>
+        <div class="cta__actions">
+          <a class="btn btn--onberry magnetic" href={`mailto:${contact.email}`}><Icon name="envelope-simple" />say hi</a>
+          <a class="btn btn--ghost" href={contact.linkedin} target="_blank" rel="noopener noreferrer"><Icon name="linkedin-logo" />linkedin</a>
+          <a class="btn btn--ghost" href={to(p, contact.resume)} target="_blank" rel="noopener" data-resume><Icon name="file-text" />resume</a>
+        </div>
+        <div class="cta__lines">
+          <p class="copyline"><span>{contact.email}</span><button class="copy-btn" type="button" data-copy={contact.email}>copy email</button></p>
+          <p class="copyline"><span>{contact.phone}</span><button class="copy-btn" type="button" data-copy={contact.phone}>copy number</button></p>
+        </div>
+      </div>
+      <div class="cta__art" data-drag-zone>
+        <Folder fill="jasmine" icon="file-text" label="resume.pdf" href={to(p, contact.resume)} class="cta-f" style="rotate: -6deg" data-drag data-resume />
+        <Folder fill="mist" icon="book-open-text" label="life-story.txt" href={to(p, "life-story.html")} class="cta-f" style="rotate: 5deg" data-drag />
+        <span class="twk" style="right: 12%; top: 4px; color: var(--on-berry); font-size: 22px" aria-hidden="true">✦</span>
+        <span class="twk" style="left: 22%; bottom: 52px; color: var(--jasmine); font-size: 14px" aria-hidden="true">✦</span>
+      </div>
+    </div>
+  </div>
+  <footer class="foot">
+    <span>✦ lynn le, business analytics, Melbourne</span>
+    <span><a href="#main">back to top</a></span>
+  </footer>
+</section>

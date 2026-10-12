@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  fill: string;
+  status: string;
+  title: string;
+  note?: string;
+  icon?: string;
+  class?: string;
+  style?: string;
+  as?: "article" | "div" | "aside" | "section";
+  [key: string]: unknown;
+}
+const { fill, status, title, note, icon, class: cls = "", style, as: Tag = "article", ...rest } = Astro.props;
+---
+<Tag class={`sticker s-${fill} ${cls}`} style={style} {...rest}>
+  <span class="sticker__status">{icon ? <Icon name={icon} /> : <span aria-hidden="true">✦</span>}{status}</span>
+  <h3 class="sticker__title">{title}</h3>
+  {note && <p class="sticker__note">{note}</p>}
+</Tag>

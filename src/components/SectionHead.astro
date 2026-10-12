@@ -1,0 +1,15 @@
+---
+import Icon from "./Icon.astro";
+
+// The design system's section head: an h2, then the helper hint directly under it.
+interface Props {
+  id: string;
+  hint?: string;
+  hintIcon?: string;
+}
+const { id, hint, hintIcon = "sparkle" } = Astro.props;
+---
+<div class="sec-head">
+  <h2 id={id} class="h-lg" data-rise><slot /></h2>
+  {hint && <span class="hint" data-rise><Icon name={hintIcon} />{hint}</span>}
+</div>

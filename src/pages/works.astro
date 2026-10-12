@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import Folder from "../components/Folder.astro";
+import FolderIcon from "../components/FolderIcon.astro";
+import Logo from "../components/Logo.astro";
+import Sticker from "../components/Sticker.astro";
+import Window from "../components/Window.astro";
+import { projects } from "../data/content";
+import { to } from "../lib/url";
+
+const p = Astro.url.pathname;
+const headline = (w: (typeof projects)[number]) => {
+  const m = w.metrics[0];
+  return m.value === null ? m.text : `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}`;
+};
+---
+
+<Layout title="Lynn Le, works" description="Six case studies from Lynn Le's CV: Sidekick, Codrops, Elite TALKS 2025, Kim Beauty Warehouse, The Muse Crochet and a 2026 hackathon run.">
+  <Nav slot="nav" current="works" />
+
+  <div class="wrap ls-head">
+    <Window path="~/lynn/works" meta={`${projects.length} folders`} closeHref={to(p, "index.html")} closeLabel="Close and go home" bodyClass="ls-intro">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <h1 class="h-xl" data-split-lines>The work <span class="em">folder.</span></h1>
+        <p class="lead" data-intro>Six folders, each one a role or a run of events from the CV. Open one for the brief, the work and the numbers.</p>
+      </div>
+      <span class="hint" data-intro><Icon name="hand-grabbing" />drag them, or switch to the list below</span>
+    </Window>
+  </div>
+
+  <section class="wrap sec" aria-labelledby="desk-h">
+    <h2 id="desk-h" class="sr">Folders on the desk</h2>
+    <div class="board desk desk--tall" data-desk>
+      {projects.map((w) => (
+        <Folder fill={w.fill} icon={w.icon} logo={w.logo} label={w.label} meta={w.meta} href={to(p, `works/${w.slug}.html`)} style={`left: ${w.pos.left}; top: ${w.pos.top}`} data-drag />
+      ))}
+      <Sticker as="aside" fill="jasmine" status="note to self" title="Every number in here is on my CV." note="No rounding up. If it isn't real, it isn't in a folder." class="desk__note" />
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="list-h">
+    <div class="sec-head">
+      <h2 id="list-h" class="h-lg" data-rise>Same folders, <span class="em">list view.</span></h2>
+      <span class="hint" data-rise><Icon name="list-bullets" />for when you'd rather scan</span>
+    </div>
+    <Window path="~/lynn/works" meta={`${projects.length} folders`} class="finder-win" bodyClass="finder-body" data-rise>
+      <div class="finder__head" aria-hidden="true"><span>name</span><span>headline</span></div>
+      <div class="finder" role="list">
+        {projects.map((w) => (
+          <a class="finder__row" href={to(p, `works/${w.slug}.html`)} role="listitem" data-row>
+            <FolderIcon icon={w.icon} fill={w.fill} />
+            <span class="finder__main">
+              <span class="finder__title">{w.titleA} {w.titleEm}</span>
+              <span class="finder__sub">{w.logo && <Logo id={w.logo} />}{w.org}<i aria-hidden="true">·</i>{w.dates}</span>
+            </span>
+            <span class="finder__num"><b>{headline(w)}</b><small>{w.metrics[0].caption}</small></span>
+            <span class="finder__go" aria-hidden="true"><Icon name="caret-right" weight="bold" /></span>
+          </a>
+        ))}
+      </div>
+      <div class="finder__status"><span>{projects.length} items</span><span>every number is from the CV</span></div>
+    </Window>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<script>
+  import "../scripts/home";
+</script>
