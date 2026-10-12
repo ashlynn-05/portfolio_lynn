@@ -3,12 +3,11 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
-import vercel from "@astrojs/vercel";
 
 // Same shape as the quin frontend, minus Payload: a fully static build.
-// On Vercel the adapter is switched on automatically; everywhere else
-// `bun run build` writes a plain static site to ./dist.
-const onVercel = !!process.env.VERCEL;
+// `bun run build` writes a plain static site to ./dist everywhere, Vercel included.
+// No Vercel adapter: it forces directory-style output (works/codrops/index.html),
+// which breaks the relative "works/codrops.html" links that src/lib/url.ts builds.
 
 const buildSiteUrl = () => {
   if (process.env.SITE_URL) return process.env.SITE_URL;
@@ -30,5 +29,4 @@ export default defineConfig({
     plugins: [/** @type {any} */ (tailwindcss())],
   },
   integrations: [sitemap(), react()],
-  adapter: onVercel ? vercel({ webAnalytics: { enabled: false } }) : undefined,
 });
