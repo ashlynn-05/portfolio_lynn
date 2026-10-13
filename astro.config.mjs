@@ -14,7 +14,7 @@ const buildSiteUrl = () => {
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
-  return "https://lynn-le.vercel.app"; // change once Lynn has a domain
+  return "https://lynnle.vercel.app"; // change once Lynn has a domain
 };
 
 export default defineConfig({

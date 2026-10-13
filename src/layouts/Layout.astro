@@ -31,7 +31,7 @@ const canonicalURL = new URL(p, Astro.site ?? Astro.url);
 
 const paletteItems: PaletteItem[] = [
   { kind: "page", label: "Home", hint: "the desktop", url: to(p, "index.html") },
-  { kind: "page", label: "Works", hint: "all six folders", url: to(p, "works.html") },
+  { kind: "page", label: "Works", hint: "all seven folders", url: to(p, "works.html") },
   { kind: "page", label: "Life story", hint: "chapters and sidequests", url: to(p, "life-story.html") },
   ...projects.map((w) => ({ kind: "work" as const, label: `${w.titleA} ${w.titleEm}`, hint: w.org, url: to(p, `works/${w.slug}.html`) })),
   { kind: "action", label: "Copy Lynn's email", hint: contact.email, url: "", action: "copy-email" },

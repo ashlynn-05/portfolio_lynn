@@ -21,6 +21,36 @@ const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+/* ---------- Every page opens at its top ----------
+   Following a folder or a job row should land on the top of the next page, not wherever the
+   last page was scrolled to. In the hosted preview the site sits inside frames whose outer
+   page keeps its own scroll and resizes the frame after load, so the top of this page is
+   pulled into view a few times while it settles, and we stop as soon as the visitor scrolls. */
+if (!location.hash) {
+  try { history.scrollRestoration = "manual"; } catch { /* older browsers */ }
+  const framed = window.top !== window.self;
+  let userMoved = false;
+  const stop = () => { userMoved = true; };
+  ["wheel", "touchstart", "keydown", "pointerdown"].forEach((t) => window.addEventListener(t, stop, { once: true, passive: true }));
+  const toTop = () => {
+    if (userMoved) return;
+    window.scrollTo(0, 0);
+    if (framed) {
+      // The page's scroll-padding (kept for anchor links under the fixed nav) would leave the
+      // outer page 96px short of the top, so lift it for this one call.
+      const root = document.documentElement;
+      root.style.scrollPaddingTop = "0px";
+      root.scrollIntoView({ block: "start", behavior: "auto" });
+      root.style.scrollPaddingTop = "";
+    }
+  };
+  toTop();
+  requestAnimationFrame(toTop);
+  window.addEventListener("load", toTop, { once: true });
+  document.fonts?.ready.then(toTop);
+  [150, 400, 800, 1500].forEach((ms) => window.setTimeout(toTop, ms));
+}
+
 /* ---------- Copy buttons: the address stays visible and selectable either way ---------- */
 $$<HTMLButtonElement>("[data-copy]").forEach((btn) => {
   const label = btn.textContent;
@@ -42,7 +72,7 @@ $$<HTMLAnchorElement>("[data-resume]").forEach((a) =>
   a.addEventListener("click", (e) => {
     e.preventDefault();
     // Show the CV as an image of its page (PDFs don't render inside every embed), with the PDF one tap away.
-    openLightbox([{ kind: "pdf", path: a.href, preview: new URL("img/resume-page.webp", a.href).href, download: "bdr_lynnn.pdf", title: "Lynn Le, resume" }]);
+    openLightbox([{ kind: "pdf", path: a.href, preview: new URL("img/resume-page.webp", a.href).href, download: "BD_resume.pdf", title: "Lynn Le, resume" }]);
   }),
 );
 

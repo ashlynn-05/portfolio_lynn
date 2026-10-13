@@ -22,11 +22,11 @@
 
 This is the personal portfolio of **Lynn Le**, a final-year Business Analytics student at Deakin University working across business development, partnerships and analytics. The site uses a desktop metaphor: work lives in draggable folders, case studies open as windows, and the life story is a pinned timeline with a sticker board.
 
-The cute is the wrapper. The numbers inside are real: every metric on the site comes from the CV in [`public/bdr_lynnn.pdf`](public/bdr_lynnn.pdf), and a test suite guards that promise.
+The cute is the wrapper. The numbers inside are real: every metric on the site comes from the CV in [`public/BD_resume.pdf`](public/BD_resume.pdf), and a test suite guards that promise.
 
 **Highlights**
 
-- Six case studies (Sidekick, Codrops, Elite TALKS, Kim Beauty, The Muse Crochet, hackathons), each with a pinned scroll story
+- Seven case studies (Sidekick, the Deakin x BGIS client project, Codrops, Elite TALKS, Kim Beauty, The Muse Crochet, hackathons), each opening as a window with its headline numbers
 - Draggable desk of folders with a list view fallback
 - Cmd+K command palette and a media lightbox, both as React islands
 - Data-attribute driven motion with GSAP, fully disabled under `prefers-reduced-motion`
@@ -117,7 +117,7 @@ bun run test
 They check that slugs are unique, every metric has a caption, every job links to a real case study, skill beams point at existing projects, the CV grade is right, and no em or en dashes slipped into the copy.
 
 > [!IMPORTANT]
-> Every number on the site must trace back to the CV. If a figure is not in `public/bdr_lynnn.pdf`, it does not go on the site.
+> Every number on the site must trace back to the CV. If a figure is not in `public/BD_resume.pdf`, it does not go on the site.
 
 Internal links should be built with the `to()` helper from `src/lib/url.ts` so they stay relative:
 
