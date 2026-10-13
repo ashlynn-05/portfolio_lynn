@@ -1,4 +1,4 @@
-// Every number on the site comes from Lynn's CV (public/bdr_lynnn.pdf).
+// Every number on the site comes from Lynn's CV (public/BD_resume.pdf).
 // Anything not on the CV is a bracketed placeholder for Lynn to fill in.
 
 export const contact = {
@@ -7,23 +7,24 @@ export const contact = {
   phone: '0449 921 128',
   phoneHref: '+61449921128',
   linkedin: 'https://www.linkedin.com/in/lynn-le-9940b4307/',
-  resume: 'bdr_lynnn.pdf',
+  resume: 'BD_resume.pdf',
 };
 
 export type Fill = 'berry' | 'rose' | 'mist' | 'caramel' | 'jasmine';
 
 /* Company logos, fetched from each company's own site or profile (October 2026).
    mark = square-ish icon for small tiles; full = the wide logo for the logo strip. */
-export type LogoId = 'sidekick' | 'codrops' | 'sw-education' | 'kim-beauty' | 'muse-crochet';
+export type LogoId = 'sidekick' | 'deakin' | 'codrops' | 'sw-education' | 'kim-beauty' | 'muse-crochet';
 export interface Logo { name: string; mark: string; markW: number; markH: number; full?: string; fullW?: number; fullH?: number; round?: boolean; ink?: string; slug: string }
 export const logos: Record<LogoId, Logo> = {
   'sidekick': { name: 'Sidekick', slug: 'sidekick', mark: 'img/logos/sidekick-mark.webp', markW: 192, markH: 185, ink: '#0F64F9' },
+  'deakin': { name: 'Deakin University', slug: 'bgis', mark: 'img/logos/deakin-mark.webp', markW: 256, markH: 256, round: true, ink: '#151918' },
   'codrops': { name: 'Codrops', slug: 'codrops', mark: 'img/logos/codrops-mark.svg', markW: 240, markH: 240, full: 'img/logos/codrops-full.webp', fullW: 640, fullH: 71 },
   'sw-education': { name: 'SW Education', slug: 'elite-talks', mark: 'img/logos/sw-mark.webp', markW: 106, markH: 106, full: 'img/logos/sw-full.webp', fullW: 640, fullH: 91 },
   'kim-beauty': { name: 'Kim Beauty Warehouse', slug: 'kim-beauty', mark: 'img/logos/kim-mark.webp', markW: 192, markH: 99, full: 'img/logos/kim-full.webp', fullW: 640, fullH: 137 },
   'muse-crochet': { name: 'The Muse Crochet', slug: 'muse-crochet', mark: 'img/logos/muse-mark.webp', markW: 256, markH: 246 },
 };
-export const logoOrder: LogoId[] = ['sidekick', 'codrops', 'sw-education', 'kim-beauty', 'muse-crochet'];
+export const logoOrder: LogoId[] = ['sidekick', 'deakin', 'codrops', 'sw-education', 'kim-beauty', 'muse-crochet'];
 
 export interface Project {
   slug: string;
@@ -55,28 +56,49 @@ export const projects: Project[] = [
     org: 'Sidekick (YC S26)', logo: 'sidekick', role: 'Business Development Representative Intern', where: 'Remote', dates: 'Jun 2026 to now',
     titleA: 'Finding the first leads for a', titleEm: 'YC startup.',
     chips: ['AI automation start-up', 'remote'],
-    problem: 'An early-stage AI automation start-up needed a commercial pipeline across manufacturing, auto dealership and retail verticals.',
+    problem: "An early-stage AI automation start-up needed B2B clients for its AI-powered SMS assistant, across manufacturing, auto dealership and retail.",
     did: [
-      'Ran targeted market research across the three verticals to find new business opportunities.',
-      "Analysed prospect data and matched outreach to each segment's pain points.",
-      'Qualified leads and contributed to sales reporting for the BDR team.',
+      "Ran targeted cold outreach to prospective B2B clients for Sidekick's AI-powered SMS assistant platform.",
+      "Researched and identified prospects in manufacturing, auto dealerships and retail, and matched each message to that segment's operational pain points.",
+      "Sourced and qualified leads, then turned outreach into booked meetings for the BDR team's pipeline.",
     ],
     metrics: [
-      { value: null, text: 'under 50', caption: 'leads qualified within a 1 to 3 month period' },
-      { value: null, text: '1 to 5', caption: 'meetings booked from research and outreach' },
+      { value: null, text: 'under 50', caption: 'leads sourced and qualified within a 1 to 3 month period' },
+      { value: null, text: '1 to 5', caption: 'meetings booked from outreach' },
       { value: 3, caption: 'verticals researched: manufacturing, auto dealerships, retail' },
     ],
     impactTitle: '1 to 5 meetings booked',
-    impactNote: 'Research and outreach turned into meetings that fed pipeline growth and commercial decisions.',
-    skills: ['market research', 'lead qualification', 'sales reporting'],
+    impactNote: "Outreach turned into meetings that went straight into the BDR team's pipeline.",
+    skills: ['outbound pipeline', 'cold outreach', 'market research and ICP mapping', 'discovery and qualification'],
     pos: { left: '5%', top: '11%' },
+  },
+  {
+    slug: 'bgis', fill: 'caramel', icon: 'presentation-chart', label: 'margin roadmap', meta: 'Deakin x BGIS',
+    org: 'Deakin University (BGIS client project)', logo: 'deakin', role: 'Consultant Intern', where: 'Melbourne', dates: 'Mar 2024 to now',
+    titleA: 'Seven people, three streams,', titleEm: 'one roadmap.',
+    chips: ['client consulting project', 'Melbourne'],
+    problem: "BGIS's People & Culture APAC executive needed a margin recovery plan, and it had to come out of three separate streams of analysis.",
+    did: [
+      'Led a 7-person consulting team across three analysis streams.',
+      'Brought client feedback into the work and kept the team on the presentation timeline.',
+      "Delivered a three-stage margin recovery roadmap to BGIS's People & Culture APAC executive.",
+    ],
+    metrics: [
+      { value: 7, caption: 'people on the consulting team' },
+      { value: 3, caption: 'analysis streams run in parallel' },
+      { value: 3, caption: 'stages in the margin recovery roadmap' },
+    ],
+    impactTitle: 'A three-stage roadmap',
+    impactNote: "Delivered to BGIS's People & Culture APAC executive.",
+    skills: ['team leadership', 'stakeholder management', 'data-to-insight translation', 'project and time management'],
+    pos: { left: '61%', top: '50%' },
   },
   {
     slug: 'codrops', fill: 'rose', icon: 'handshake', label: 'sponsor pipeline', meta: 'Codrops, 2024 to now',
     org: 'Codrops', logo: 'codrops', role: 'Partnership Associate', where: 'Remote', dates: 'Mar 2024 to now',
     titleA: 'Building a sponsor pipeline from', titleEm: 'scratch.',
-    chips: ['frontend dev and UX/UI publication', 'remote'],
-    problem: 'Codrops needed sponsors, and there was no pipeline yet to find, track or qualify them.',
+    chips: ['frontend dev and UX/UI publication', '2M+ monthly readers', 'remote'],
+    problem: 'Codrops reaches 2M+ readers a month, but there was no pipeline yet to find, track or qualify sponsors.',
     did: [
       'Sourced leads from YC, Product Hunt and LinkedIn.',
       'Wrote personalised outreach sequences across LinkedIn and email.',
@@ -86,12 +108,12 @@ export const projects: Project[] = [
     metrics: [
       { value: 50, suffix: '+', caption: 'active leads managed at once' },
       { value: 3, caption: 'lead sources: YC, Product Hunt and LinkedIn' },
-      { value: 2, caption: 'outreach channels: LinkedIn and email' },
+      { value: 2, suffix: 'M+', caption: 'monthly readers sponsors get in front of' },
     ],
     impactTitle: 'Prospects became signed sponsors',
     impactNote: 'Poor-fit leads were qualified out early, which kept the pipeline clean.',
-    skills: ['lead sourcing', 'outreach sequences', 'CRM tracking', 'discovery calls'],
-    pos: { left: '19%', top: '52%' },
+    skills: ['lead sourcing', 'outreach sequences', 'CRM management and hygiene', 'discovery and qualification calls'],
+    pos: { left: '16%', top: '52%' },
   },
   {
     slug: 'elite-talks', fill: 'caramel', icon: 'megaphone', label: 'elite talks 2025', meta: 'SW Education',
@@ -111,7 +133,7 @@ export const projects: Project[] = [
     impactTitle: '300+ registrations',
     impactNote: 'And a 20% uplift in engagement.',
     skills: ['stakeholder management', 'multi-workstream management', 'event marketing'],
-    pos: { left: '35%', top: '12%' },
+    pos: { left: '28%', top: '12%' },
   },
   {
     slug: 'kim-beauty', fill: 'jasmine', icon: 'storefront', label: 'shop floor', meta: 'Kim Beauty Warehouse',
@@ -131,7 +153,7 @@ export const projects: Project[] = [
     impactTitle: '+12% repeat purchases',
     impactNote: 'Over three months, alongside a 15% lift in impulse sales.',
     skills: ['customer insight', 'consultative selling', 'visual merchandising'],
-    pos: { left: '49%', top: '52%' },
+    pos: { left: '39%', top: '52%' },
   },
   {
     slug: 'muse-crochet', fill: 'mist', icon: 'yarn', label: 'crochet campaigns', meta: 'The Muse Crochet',
@@ -152,35 +174,35 @@ export const projects: Project[] = [
     impactTitle: '+25% engagement',
     impactNote: 'And 20% more foot traffic.',
     skills: ['campaign testing', 'customer experience', 'social content'],
-    pos: { left: '63%', top: '9%' },
+    pos: { left: '52%', top: '9%' },
   },
   {
-    slug: 'hackathons', fill: 'berry', icon: 'trophy', label: 'hackathon run', meta: '5 events, 2026',
-    org: 'Hackathons and certification', role: 'Participant', where: 'Melbourne', dates: 'Mar to Sep 2026',
-    titleA: 'Five events in', titleEm: 'seven months.',
-    chips: ['hackathons', 'certification'],
+    slug: 'hackathons', fill: 'berry', icon: 'trophy', label: 'hackathon run', meta: '4 events, 2026',
+    org: 'Hackathons and competitions', role: 'Participant', where: 'Melbourne', dates: 'May to Sep 2026',
+    titleA: 'Four events in', titleEm: 'five months.',
+    chips: ['hackathons', 'competitions'],
     problem: '[Why these events: what you wanted to learn or build. Add it in your own words.]',
     did: [
-      'UX Design Certification, Google and Coursera (Mar 2026)',
       "L'Oréal Brainstorm 2026 (May 2026)",
       { text: 'Watt The Hack by MLAI x Monash DeepNeuron (Jun 2026), where the team built SolarCycle', href: 'https://github.com/cobeo2004/hackathon-fork', link: 'see the code' },
-      "AI Agentic Hackathon by GenFund AI, Founder's Track (Jul 2026)",
+      "AI Agentic Hackathon by GenFund AI (Jul 2026), placing in the Top 20 of 150 on the Founder's Track",
       { text: 'Forward: AI in Business Hackathon by DSCube x Raid x Eleno (Sep 2026), where the team built Trustlane', href: 'https://trustlane.house-of-imaginaries.com/', link: 'open Trustlane' },
     ],
     metrics: [
-      { value: 5, caption: 'events between March and September 2026' },
-      { value: 1, caption: 'certification: UX Design, Google and Coursera' },
-      { value: 4, caption: "hackathons, one on a Founder's Track" },
+      { value: 4, caption: 'events between May and September 2026' },
+      { value: null, text: 'Top 20', caption: "of 150 on the Founder's Track at the AI Agentic Hackathon" },
+      { value: 3, caption: "hackathons, plus L'Oréal Brainstorm 2026" },
     ],
     impactTitle: 'Two builds you can open.',
     impactNote: 'Trustlane is live, and the SolarCycle code is on GitHub. Both links are in the list.',
-    skills: ['UX design'],
-    pos: { left: '82%', top: '8%' },
+    skills: ['AI tools'],
+    pos: { left: '78%', top: '8%' },
   },
 ];
 
 export const jobs = [
-  { icon: 'target', org: 'Sidekick', logo: 'sidekick' as LogoId, chip: 'YC S26', dates: 'Jun 2026 to now, remote', role: 'Business Development Representative Intern', note: 'Market research across manufacturing, auto dealerships and retail, turned into qualified leads and 1 to 5 booked meetings for an AI automation start-up.', slug: 'sidekick' },
+  { icon: 'target', org: 'Sidekick', logo: 'sidekick' as LogoId, chip: 'YC S26', dates: 'Jun 2026 to now, remote', role: 'Business Development Representative Intern', note: 'Targeted cold outreach to B2B clients for an AI-powered SMS assistant: under 50 leads sourced and qualified in 1 to 3 months, and 1 to 5 booked meetings.', slug: 'sidekick' },
+  { icon: 'presentation-chart', org: 'Deakin University', logo: 'deakin' as LogoId, chip: 'BGIS client project', dates: 'Mar 2024 to now, Melbourne', role: 'Consultant Intern', note: "Led a 7-person consulting team across three analysis streams, bringing client feedback and presentation timelines together into a three-stage margin recovery roadmap for BGIS's People & Culture APAC executive.", slug: 'bgis' },
   { icon: 'handshake', org: 'Codrops', logo: 'codrops' as LogoId, dates: 'Mar 2024 to now, remote', role: 'Partnership Associate', note: 'Built the sponsorship pipeline from scratch and kept 50+ active leads moving across LinkedIn and email.', slug: 'codrops' },
   { icon: 'storefront', org: 'Kim Beauty Warehouse', logo: 'kim-beauty' as LogoId, dates: 'Mar 2025 to Mar 2026, Melbourne', role: 'Sales Consultant', note: 'Personal recommendations for 100+ customers a day, which lifted repeat purchases by 12% over three months.', slug: 'kim-beauty' },
   { icon: 'megaphone', org: 'SW Education', logo: 'sw-education' as LogoId, dates: 'Aug 2025 to Nov 2025, Melbourne', role: 'Digital Marketing Intern', note: 'Kept events, partnerships and design in step for Elite TALKS 2025: 300+ registrations and a 20% lift in engagement.', slug: 'elite-talks' },
@@ -188,12 +210,12 @@ export const jobs = [
 ];
 
 export const skills = [
-  { label: 'market research', links: [0, 1, 2], note: 'Market research at Sidekick, Codrops and SW Education, starting with the manufacturing, auto dealership and retail verticals at Sidekick.' },
+  { label: 'market research', links: [0, 1, 2, 5], note: 'Market research at Sidekick, Codrops, SW Education and the BGIS client project, starting with the manufacturing, auto dealership and retail verticals at Sidekick.' },
   { label: 'lead sourcing', links: [0, 1], note: "Leads sourced from YC, Product Hunt and LinkedIn at Codrops, and qualified for Sidekick's BDR team." },
   { label: 'CRM and pipeline tracking', links: [0, 1, 3, 4], note: 'Pipelines kept moving at Sidekick, Codrops, Kim Beauty and The Muse Crochet, including a structured CRM spreadsheet at Codrops.' },
   { label: 'sales reporting', links: [1, 3, 4], note: 'Sales reporting at Codrops, Kim Beauty and The Muse Crochet, from conversion metrics to repeat purchases and foot traffic.' },
-  { label: 'stakeholder management', links: [0, 1, 2, 3, 4], note: 'Stakeholders at all five, from sponsors at Codrops to the events, partnerships and design teams behind Elite TALKS 2025.' },
-  { label: 'customer insight and testing', links: [2, 3, 4], note: 'Customer insight at SW Education, Kim Beauty and The Muse Crochet, including A/B-style content tests for The Muse Crochet.' },
+  { label: 'stakeholder management', links: [0, 1, 2, 3, 4, 5], note: "Stakeholders everywhere, from sponsors at Codrops to BGIS's People & Culture APAC executive." },
+  { label: 'customer insight and testing', links: [2, 3, 4, 5], note: 'Customer insight at SW Education, Kim Beauty, The Muse Crochet and the BGIS client project, including A/B-style content tests for The Muse Crochet.' },
 ];
 
 export const beamProjects = [
@@ -202,6 +224,7 @@ export const beamProjects = [
   { label: 'SW Education', logo: 'sw-education', fill: 'caramel', icon: 'megaphone' },
   { label: 'Kim Beauty', logo: 'kim-beauty', fill: 'jasmine', icon: 'storefront' },
   { label: 'The Muse Crochet', logo: 'muse-crochet', fill: 'mist', icon: 'yarn' },
+  { label: 'Deakin x BGIS', logo: 'deakin', fill: 'caramel', icon: 'presentation-chart' },
 ] as const satisfies readonly { label: string; logo: LogoId; fill: string; icon: string }[];
 
 export interface Chapter {
@@ -292,5 +315,8 @@ export const stickers = [
   { fill: 'blush', icon: 'seal-check', status: 'in progress', title: 'Finish with the HD intact', note: '83/100 and a merit scholarship. Final stretch.', l: '53%', t: '356px', r: 2 },
   { fill: 'open', icon: 'plus-circle', status: 'your next quest', title: 'Add a quest', note: "A race, a trip, a recipe. Tell me and I'll pin it here.", l: '77%', t: '344px', r: -4 },
 ];
+
+/** CRM and prospecting tools from the CV, shown on the works page. */
+export const crmTools = ['Salesforce', 'HubSpot', 'LinkedIn Sales Navigator'];
 
 export const tools = ['Salesforce', 'HubSpot', 'LinkedIn Sales Navigator', 'Figma', 'Jira', 'Canva', 'Oracle', 'Python', 'SQL'];

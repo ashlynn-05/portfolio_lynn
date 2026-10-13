@@ -13,11 +13,11 @@ import { to } from "../lib/url";
 
 const p = Astro.url.pathname;
 
-// Beam geometry: skills sit on 58px rows, projects on 69.6px rows (6 vs 5 rows, same height).
+// Beam geometry (no-JS fallback): skills and projects both sit on 58px rows.
 const beams = skills.flatMap((s, i) =>
   s.links.map((j) => {
     const ys = 29 + 58 * i;
-    const yp = 34.8 + 69.6 * j;
+    const yp = 29 + 58 * j;
     return { skill: i, proj: j, d: `M33 ${ys} C 50 ${ys}, 50 ${yp}, 67 ${yp}` };
   }),
 );

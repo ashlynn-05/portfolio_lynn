@@ -8,7 +8,7 @@ import FolderIcon from "../components/FolderIcon.astro";
 import Logo from "../components/Logo.astro";
 import Sticker from "../components/Sticker.astro";
 import Window from "../components/Window.astro";
-import { projects } from "../data/content";
+import { projects, crmTools } from "../data/content";
 import { to } from "../lib/url";
 
 const p = Astro.url.pathname;
@@ -18,14 +18,14 @@ const headline = (w: (typeof projects)[number]) => {
 };
 ---
 
-<Layout title="Lynn Le, works" description="Six case studies from Lynn Le's CV: Sidekick, Codrops, Elite TALKS 2025, Kim Beauty Warehouse, The Muse Crochet and a 2026 hackathon run.">
+<Layout title="Lynn Le, works" description="Seven case studies from Lynn Le's CV: Sidekick, a BGIS client project, Codrops, Elite TALKS 2025, Kim Beauty Warehouse, The Muse Crochet and a 2026 hackathon run.">
   <Nav slot="nav" current="works" />
 
   <div class="wrap ls-head">
     <Window path="~/lynn/works" meta={`${projects.length} folders`} closeHref={to(p, "index.html")} closeLabel="Close and go home" bodyClass="ls-intro">
       <div style="display: flex; flex-direction: column; gap: 20px">
         <h1 class="h-xl" data-split-lines>The work <span class="em">folder.</span></h1>
-        <p class="lead" data-intro>Six folders, each one a role or a run of events from the CV. Open one for the brief, the work and the numbers.</p>
+        <p class="lead" data-intro>Seven folders, each one a role or a run of events from the CV. Open one for the brief, the work and the numbers.</p>
       </div>
       <span class="hint" data-intro><Icon name="hand-grabbing" />drag them, or switch to the list below</span>
     </Window>
@@ -63,6 +63,15 @@ const headline = (w: (typeof projects)[number]) => {
       </div>
       <div class="finder__status"><span>{projects.length} items</span><span>every number is from the CV</span></div>
     </Window>
+
+    <div class="crm card" data-rise>
+      <span class="crm__icon" aria-hidden="true"><Icon name="address-book" weight="bold" /></span>
+      <div class="crm__text">
+        <h3 class="crm__h">Where the pipeline lives</h3>
+        <p class="crm__p">The CRM and prospecting tools I work in for sourcing, outreach and tracking.</p>
+      </div>
+      <ul class="crm__tools">{crmTools.map((t) => <li class="chip chip--outline">{t}</li>)}</ul>
+    </div>
   </section>
 
   <Footer slot="footer" />

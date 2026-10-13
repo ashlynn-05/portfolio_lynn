@@ -355,7 +355,7 @@ a { color: var(--label); }
 .skill.on[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--card-solid), 0 0 0 5px var(--berry); }
 .beam__col { position: relative; z-index: 1; display: grid; align-items: center; }
 .beam__col--l { grid-auto-rows: 58px; justify-items: end; }
-.beam__col--r { grid-auto-rows: 69.6px; justify-items: start; }
+.beam__col--r { grid-auto-rows: 58px; justify-items: start; }
 .skill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--hairline-strong); background: var(--card-solid); color: var(--label); font: 600 14px/1 var(--sans); cursor: pointer; transition: background-color .25s var(--ease), color .25s var(--ease), transform .3s var(--ease); }
 .skill.on { background: var(--berry); color: var(--on-berry); border-color: var(--berry); box-shadow: 0 6px 18px -8px rgba(213,48,109,.55); }
 .proj { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 8px; border-radius: 14px; background: var(--card-bg); border: var(--card-border); font: 600 14px/1 var(--sans); transition: transform .3s var(--ease), background-color .25s var(--ease); }
@@ -528,7 +528,6 @@ a { color: var(--label); }
   .beam__to > * { display: inline-flex; }
   .beam__to .i { width: 14px; height: 14px; color: var(--berry); }
   .beam__col--r { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; gap: 8px; }
-  .beam__col--r .proj:last-child { grid-column: 1 / -1; }
   .proj { width: 100%; min-height: 48px; padding: 0 12px 0 8px; font-size: 13.5px; opacity: .45; filter: grayscale(.85); scale: .97; transition: opacity .3s var(--ease), filter .3s var(--ease), scale .35s var(--ease), background-color .25s var(--ease), box-shadow .25s var(--ease); }
   .proj.on { opacity: 1; filter: none; scale: 1; }
   .beam-note { margin-top: 14px; min-height: 0; padding: 14px 16px; border-radius: 14px; background: var(--soft-blush); color: var(--ink); font-size: 14px; line-height: 1.45; }
@@ -597,6 +596,12 @@ a { color: var(--label); }
 .finder__go { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: var(--berry); transition: transform .3s var(--ease), background-color .2s var(--ease); }
 .finder__row:hover .finder__go { transform: translateX(3px); background: var(--card-solid); }
 .finder__status { display: flex; justify-content: space-between; gap: 12px; padding: 10px 22px; border-top: var(--card-border); background: linear-gradient(180deg, var(--bar-bottom), var(--bar-top)); font: 500 12px/1 var(--sans); color: var(--muted); }
+.crm { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px; align-items: center; margin-top: 18px; padding: 18px 22px; }
+.crm__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft-blush); color: var(--berry); }
+.crm__icon .i { width: 24px; height: 24px; }
+.crm__h { font: 700 17px/1.25 var(--display); color: var(--ink); }
+.crm__p { margin-top: 3px; font: 500 14px/1.45 var(--sans); color: var(--body); }
+.crm__tools { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .search-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--hairline-strong); background: var(--card-solid); color: var(--label); font: 500 13px/1 var(--sans); cursor: pointer; }
 .search-btn kbd { font: 600 11px/1 var(--sans); padding: 3px 6px; border-radius: 6px; background: var(--soft-blush); color: var(--label); }
 .search-btn:hover { background: var(--soft-blush); }
@@ -626,6 +631,8 @@ a { color: var(--label); }
   .finder__num { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
   .finder__go { display: none; }
   .finder__status span + span { display: none; }
+  .crm { grid-template-columns: auto minmax(0, 1fr); }
+  .crm__tools { grid-column: 1 / -1; justify-content: flex-start; }
   .search-btn span { display: none; }
 }
 .desk--tall { height: 520px; }
