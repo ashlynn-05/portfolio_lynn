@@ -8,7 +8,7 @@ import Sticker from "../components/Sticker.astro";
 import Window from "../components/Window.astro";
 import SectionHead from "../components/SectionHead.astro";
 import Logo from "../components/Logo.astro";
-import { projects, jobs, skills, beamProjects, logos, logoOrder, contact } from "../data/content";
+import { projects, jobs, skills, beamProjects, logos, logoOrder, contact, chapters } from "../data/content";
 import { to } from "../lib/url";
 
 const p = Astro.url.pathname;
@@ -170,13 +170,14 @@ const beams = skills.flatMap((s, i) =>
 
   <section id="story" class="wrap sec" aria-labelledby="story-h">
     <SectionHead id="story-h" hint="it's a .txt file, but a cute one" hintIcon="file-text">The long version has <span class="em">sidequests.</span></SectionHead>
-    <Window path="~/lynn/life-story.txt" meta="7 chapters so far" data-rise bodyClass="teaser">
+    <Window path="~/lynn/life-story.txt" meta={`${chapters.filter((c) => !c.todo).length} chapters so far`} data-rise bodyClass="teaser">
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start">
         <ul class="teaser__lines">
           <li><b>2024</b>New city, new degree, a merit scholarship</li>
-          <li><b>2024</b>Said yes to cold outreach at Codrops</li>
           <li><b>2024</b>Crochet small biz era</li>
           <li><b>2025</b>Learned to read a shop floor</li>
+          <li><b>2025</b>Picked the human side</li>
+          <li><b>2026</b>Said yes to cold outreach at Codrops</li>
           <li><b>2026</b>Five events in seven months</li>
           <li><b>2026</b>Joined a YC startup</li>
         </ul>
@@ -185,7 +186,7 @@ const beams = skills.flatMap((s, i) =>
       <div class="teaser__stack" aria-hidden="true">
         <Sticker as="div" fill="berry" status="ongoing" title="Mentor first-years" style="left: 4%; top: 6%; rotate: -5deg" data-parallax="0.35" />
         <Sticker as="div" fill="jasmine" status="complete" title="Run a shop on real data" style="right: 0; top: 34%; rotate: 4deg" data-parallax="0.15" />
-        <Sticker as="div" fill="open" status="your next quest" title="Add a quest" style="left: 10%; bottom: 0; rotate: -2deg" data-parallax="0.55" />
+        <Sticker as="div" fill="caramel" status="ongoing" title="Pay my own way" style="left: 10%; bottom: 0; rotate: -2deg" data-parallax="0.55" />
       </div>
     </Window>
   </section>
