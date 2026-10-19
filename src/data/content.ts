@@ -270,6 +270,12 @@ export const chapters: Chapter[] = [
     sticker: { fill: 'mist', status: 'ongoing', title: 'Crew the campus' },
   },
   {
+    date: 'Late 2025', icon: 'users-three', fill: 'rose', title: 'Picked the human side',
+    body: "After trying every role I could get my hands on, I noticed a pattern. I can handle the data, but I would rather use it as evidence than make it the whole job. What pulls me in is the human side: working with clients, building relationships that last, and helping people solve their problems. So I pivoted to SDR and BDR work.",
+    chips: ['data as evidence', 'people as the job'],
+    big: { value: null, text: 'people', caption: 'the side of the work I chose, with data as my evidence' },
+  },
+  {
     date: 'Mar 2026', icon: 'handshake', fill: 'rose', title: 'Said yes to cold outreach',
     body: 'Joined Codrops as Partnership Associate and built a sponsorship pipeline from scratch: 60 leads a week from YC, Product Hunt and LinkedIn, personalised sequences, and a CRM spreadsheet for every stage.',
     chips: ['17 signed sponsors', '$15k signed', '20% response rate'],
@@ -315,7 +321,11 @@ export const stickers = [
   { fill: 'mist', icon: 'confetti', status: 'ongoing', title: 'Crew the campus', note: 'DUSA Crew. Events on time, people in the right room.', l: '5%', t: '362px', r: 3 },
   { fill: 'plain', icon: 'lightning', status: 'levelling up', title: 'One new tool a quarter', note: 'BigQuery, then DAX, then whatever the next role needs.', l: '29%', t: '340px', r: -3 },
   { fill: 'blush', icon: 'seal-check', status: 'in progress', title: 'Finish with the HD intact', note: '83/100 and a merit scholarship. Final stretch.', l: '53%', t: '356px', r: 2 },
-  { fill: 'open', icon: 'plus-circle', status: 'your next quest', title: 'Add a quest', note: "A race, a trip, a recipe. Tell me and I'll pin it here.", l: '77%', t: '344px', r: -4 },
+  { fill: 'jasmine', icon: 'wallet', status: 'ongoing', title: 'Pay my own way', note: 'Financially independent since I landed in Australia. Restaurants, markets, retail and a theatre bar paid the bills alongside study.', l: '77%', t: '330px', r: -3 },
+  { fill: 'plain', icon: 'chats-circle', status: 'ongoing', title: 'Learn from every shift', note: "Colleagues and customers taught me how to talk to people, value their time and own my part. That's where the resilience came from.", l: '4%', t: '668px', r: -2 },
+  { fill: 'caramel', icon: 'mountains', status: 'ongoing', title: 'Leave the comfort zone', note: 'Theory and grades are a compass. Growing up came from pushing past my limits, staying patient and saying yes to new rooms.', l: '28%', t: '640px', r: 3 },
+  { fill: 'berry', icon: 'linkedin-logo', status: 'unlocked', title: 'Show up on LinkedIn', note: 'The day I built my LinkedIn properly, I saw the potential. Doors open once you show what you can do.', l: '52%', t: '674px', r: -2 },
+  { fill: 'open', icon: 'plus-circle', status: 'your next quest', title: 'Add a quest', note: "A race, a trip, a recipe. Tell me and I'll pin it here.", l: '77%', t: '652px', r: 4 },
 ];
 
 /** CRM and prospecting tools from the CV, shown on the works page. */

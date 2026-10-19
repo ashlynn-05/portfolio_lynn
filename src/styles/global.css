@@ -471,7 +471,7 @@ a { color: var(--label); }
 .sheet { display: grid; grid-template-columns: auto 1fr; gap: 10px 16px; font: 500 15px/1.45 var(--sans); }
 .sheet dt { color: var(--muted); }
 .sheet dd { color: var(--ink); }
-.board--stickers { height: 660px; overflow: hidden; }
+.board--stickers { height: 990px; overflow: hidden; }
 .board--stickers .sticker { position: absolute; width: min(240px, 22%); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
 .board--stickers.is-tidy { height: auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; padding: 24px; }
 .board--stickers.is-tidy .sticker { position: relative; left: auto !important; top: auto !important; width: auto; rotate: 0deg !important; }
