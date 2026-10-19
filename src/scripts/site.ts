@@ -72,7 +72,7 @@ $$<HTMLAnchorElement>("[data-resume]").forEach((a) =>
   a.addEventListener("click", (e) => {
     e.preventDefault();
     // Show the CV as an image of its page (PDFs don't render inside every embed), with the PDF one tap away.
-    openLightbox([{ kind: "pdf", path: a.href, preview: new URL("img/resume-page.webp", a.href).href, download: "BD_resume.pdf", title: "Lynn Le, resume" }]);
+    openLightbox([{ kind: "pdf", path: a.href, preview: new URL("img/resume-page-oct26.webp", a.href).href, download: "BD_resume.pdf", title: "Lynn Le, resume" }]);
   }),
 );
 
