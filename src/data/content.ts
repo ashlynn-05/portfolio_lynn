@@ -108,11 +108,11 @@ export const projects: Project[] = [
     ],
     metrics: [
       { value: 17, caption: 'signed sponsors' },
-      { value: 15, prefix: '$', suffix: 'k', caption: 'in sponsorship signed' },
+      { value: 9, prefix: '~$', suffix: 'k', caption: 'in sponsorship signed' },
       { value: 20, suffix: '%', caption: 'response rate on outreach' },
     ],
     impactTitle: '17 signed sponsors',
-    impactNote: 'Worth $15k, from a pipeline that did not exist before.',
+    impactNote: 'Worth ~$9k, from a pipeline that did not exist before.',
     skills: ['lead sourcing', 'cold outreach and multi-touch sequencing', 'CRM management and hygiene', 'discovery and lead qualification'],
     pos: { left: '16%', top: '52%' },
   },
@@ -205,7 +205,7 @@ export const projects: Project[] = [
 export const jobs = [
   { icon: 'target', org: 'Sidekick', logo: 'sidekick' as LogoId, chip: 'YC S26', dates: 'Jun 2026 to now, remote', role: 'Business Development Representative Intern', note: 'Targeted outbound for an AI-powered SMS assistant: 11 qualified meetings for the AEs from ~300 sourced B2B leads in three months.', slug: 'sidekick' },
   { icon: 'presentation-chart', org: 'Deakin University', logo: 'deakin' as LogoId, chip: 'BGIS client project', dates: 'Jul to Oct 2026, Melbourne', role: 'Consultant Intern', note: "Led a 7-person consulting team across three analysis streams, bringing client feedback and presentation timelines together into a three-stage margin recovery roadmap for BGIS's People & Culture APAC executive.", slug: 'bgis' },
-  { icon: 'handshake', org: 'Codrops', logo: 'codrops' as LogoId, dates: 'Mar 2026 to now, remote', role: 'Partnership Associate', note: 'Built the sponsorship pipeline from scratch: 60 new leads a week, a 20% response rate and 17 signed sponsors worth $15k.', slug: 'codrops' },
+  { icon: 'handshake', org: 'Codrops', logo: 'codrops' as LogoId, dates: 'Mar 2026 to now, remote', role: 'Partnership Associate', note: 'Built the sponsorship pipeline from scratch: 60 new leads a week, a 20% response rate and 17 signed sponsors worth ~$9k.', slug: 'codrops' },
   { icon: 'storefront', org: 'Kim Beauty Warehouse', logo: 'kim-beauty' as LogoId, dates: 'Mar 2025 to Mar 2026, Melbourne', role: 'Sales Consultant', note: 'Personal recommendations for 100+ customers a day, which lifted repeat purchases by 15% over three months.', slug: 'kim-beauty' },
   { icon: 'megaphone', org: 'SW Education', logo: 'sw-education' as LogoId, dates: 'Aug 2025 to Nov 2025, Melbourne', role: 'Digital Marketing Intern', note: 'Kept events, partnerships and design in step for Elite TALKS 2025: 300+ registrations and a 21% lift in engagement.', slug: 'elite-talks' },
   { icon: 'yarn', org: 'The Muse Crochet', logo: 'muse-crochet' as LogoId, dates: 'Nov 2024 to Mar 2025, Melbourne', role: 'Sales & Customer Experience Associate', note: 'Ran Instagram and Facebook campaigns with A/B-style testing: 25% more engagement and 20% more foot traffic.', slug: 'muse-crochet' },
@@ -278,8 +278,8 @@ export const chapters: Chapter[] = [
   {
     date: 'Mar 2026', icon: 'handshake', fill: 'rose', title: 'Said yes to cold outreach',
     body: 'Joined Codrops as Partnership Associate and built a sponsorship pipeline from scratch: 60 leads a week from YC, Product Hunt and LinkedIn, personalised sequences, and a CRM spreadsheet for every stage.',
-    chips: ['17 signed sponsors', '$15k signed', '20% response rate'],
-    big: { value: 17, caption: 'signed sponsors, worth $15k' },
+    chips: ['17 signed sponsors', '~$9k signed', '20% response rate'],
+    big: { value: 17, caption: 'signed sponsors, worth ~$9k' },
     sticker: { fill: 'plain', status: 'ongoing', title: 'Say yes to cold outreach' },
   },
   {
