@@ -41,6 +41,7 @@ export interface Project {
   titleEm: string;
   chips: string[];
   problem: string;
+  problemLabel?: string;
   did: (string | { text: string; href: string; link: string })[];
   metrics: { value: number | null; prefix?: string; suffix?: string; text?: string; caption: string }[];
   impactTitle: string;
@@ -181,7 +182,8 @@ export const projects: Project[] = [
     org: 'Hackathons and competitions', role: 'Participant', where: 'Melbourne', dates: 'May to Sep 2026',
     titleA: 'Four events in', titleEm: 'five months.',
     chips: ['hackathons', 'competitions'],
-    problem: '[Why these events: what you wanted to learn or build. Add it in your own words.]',
+    problemLabel: 'motive',
+    problem: "I'm a business student, so I joined hackathons to see what building a product in real time with developers actually looks like. I took the PM seat to keep each build on track, learned from people who build tech for hard problems, and put myself in rooms more technical than I'm used to.",
     did: [
       "L'Oréal Brainstorm 2026 (May 2026)",
       { text: 'Watt The Hack by MLAI x Monash DeepNeuron (Jun 2026), where the team built SolarCycle', href: 'https://github.com/cobeo2004/hackathon-fork', link: 'see the code' },
