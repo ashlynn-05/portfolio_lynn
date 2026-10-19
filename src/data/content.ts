@@ -309,7 +309,6 @@ export const chapters: Chapter[] = [
   {
     date: 'next', icon: 'plus-circle', fill: 'jasmine', title: '[next chapter]', todo: true,
     body: 'Unwritten. Could have your team in it.',
-    sticker: { fill: 'open', status: 'your next quest', title: 'Add a quest' },
   },
 ];
 
@@ -325,7 +324,6 @@ export const stickers = [
   { fill: 'plain', icon: 'chats-circle', status: 'ongoing', title: 'Learn from every shift', note: "Colleagues and customers taught me how to talk to people, value their time and own my part. That's where the resilience came from.", l: '4%', t: '668px', r: -2 },
   { fill: 'caramel', icon: 'mountains', status: 'ongoing', title: 'Leave the comfort zone', note: 'Theory and grades are a compass. Growing up came from pushing past my limits, staying patient and saying yes to new rooms.', l: '28%', t: '640px', r: 3 },
   { fill: 'berry', icon: 'linkedin-logo', status: 'unlocked', title: 'Show up on LinkedIn', note: 'The day I built my LinkedIn properly, I saw the potential. Doors open once you show what you can do.', l: '52%', t: '674px', r: -2 },
-  { fill: 'open', icon: 'plus-circle', status: 'your next quest', title: 'Add a quest', note: "A race, a trip, a recipe. Tell me and I'll pin it here.", l: '77%', t: '652px', r: 4 },
 ];
 
 /** CRM and prospecting tools from the CV, shown on the works page. */
