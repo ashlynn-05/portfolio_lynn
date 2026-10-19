@@ -6,7 +6,7 @@
 
 **A soft pink desktop of folders, windows and stickers for a Business Analytics student who likes sidequests.**
 
-**Live:** [lynnle-bd-portfolio.vercel.app](https://lynnle-bd-portfolio.vercel.app)
+**Live:** [[lynnle-bd-portfolio.vercel.app](https://lynnle.vercel.app)]
 
 [![Astro](https://img.shields.io/badge/Astro-5-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
