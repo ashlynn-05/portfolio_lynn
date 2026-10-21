@@ -127,11 +127,11 @@ export const projects: Project[] = [
       'Managed competing priorities and stakeholder timelines through to the event.',
     ],
     metrics: [
-      { value: 300, suffix: '+', caption: 'registrations for Elite TALKS 2025' },
+      { value: 100, suffix: '+', caption: 'registrations for Elite TALKS 2025' },
       { value: 21, prefix: '+', suffix: '%', caption: 'uplift in engagement' },
       { value: 3, caption: 'teams in step: events, partnerships and design' },
     ],
-    impactTitle: '300+ registrations',
+    impactTitle: '100+ registrations',
     impactNote: 'And a 21% uplift in engagement.',
     skills: ['stakeholder management', 'multi-workstream management', 'event marketing'],
     pos: { left: '28%', top: '12%' },
@@ -207,7 +207,7 @@ export const jobs = [
   { icon: 'presentation-chart', org: 'Deakin University', logo: 'deakin' as LogoId, chip: 'BGIS client project', dates: 'Jul to Oct 2026, Melbourne', role: 'Consultant Intern', note: "Led a 7-person consulting team across three analysis streams, bringing client feedback and presentation timelines together into a three-stage margin recovery roadmap for BGIS's People & Culture APAC executive.", slug: 'bgis' },
   { icon: 'handshake', org: 'Codrops', logo: 'codrops' as LogoId, dates: 'Mar 2026 to now, remote', role: 'Partnership Associate', note: 'Built the sponsorship pipeline from scratch: 60 new leads a week, a 20% response rate and 17 signed sponsors worth ~$9k.', slug: 'codrops' },
   { icon: 'storefront', org: 'Kim Beauty Warehouse', logo: 'kim-beauty' as LogoId, dates: 'Mar 2025 to Mar 2026, Melbourne', role: 'Sales Consultant', note: 'Personal recommendations for 100+ customers a day, which lifted repeat purchases by 15% over three months.', slug: 'kim-beauty' },
-  { icon: 'megaphone', org: 'SW Education', logo: 'sw-education' as LogoId, dates: 'Aug 2025 to Nov 2025, Melbourne', role: 'Digital Marketing Intern', note: 'Kept events, partnerships and design in step for Elite TALKS 2025: 300+ registrations and a 21% lift in engagement.', slug: 'elite-talks' },
+  { icon: 'megaphone', org: 'SW Education', logo: 'sw-education' as LogoId, dates: 'Aug 2025 to Nov 2025, Melbourne', role: 'Digital Marketing Intern', note: 'Kept events, partnerships and design in step for Elite TALKS 2025: 100+ registrations and a 21% lift in engagement.', slug: 'elite-talks' },
   { icon: 'yarn', org: 'The Muse Crochet', logo: 'muse-crochet' as LogoId, dates: 'Nov 2024 to Mar 2025, Melbourne', role: 'Sales & Customer Experience Associate', note: 'Ran Instagram and Facebook campaigns with A/B-style testing: 25% more engagement and 20% more foot traffic.', slug: 'muse-crochet' },
 ];
 
@@ -265,8 +265,8 @@ export const chapters: Chapter[] = [
   {
     date: 'Aug 2025', icon: 'megaphone', fill: 'caramel', title: 'Herded an event',
     body: 'Digital Marketing Intern at SW Education, keeping the events, partnerships and design teams on one timeline for Elite TALKS 2025.',
-    chips: ['300+ registrations', '+21% engagement'],
-    big: { value: 300, suffix: '+', caption: 'registrations for Elite TALKS 2025' },
+    chips: ['100+ registrations', '+21% engagement'],
+    big: { value: 100, suffix: '+', caption: 'registrations for Elite TALKS 2025' },
     sticker: { fill: 'mist', status: 'ongoing', title: 'Crew the campus' },
   },
   {
